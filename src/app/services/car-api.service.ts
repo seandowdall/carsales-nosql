@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
-import {AngularFirestoreCollection, AngularFirestore } from "@angular/fire/firestore";
+import {AngularFirestoreCollection, AngularFirestore } from "@angular/fire/compat/firestore";
 
 import {ICar } from "../interfaces/car";
 import { ThisReceiver } from '@angular/compiler';
@@ -14,11 +15,11 @@ export class CarApiService {
 
   carsDataCollection:AngularFirestoreCollection<ICar>;
 
-  carsData:Observable<ICar[]>;
+  carsData!:Observable<ICar[]>;
 
-  allCarsData:ICar[];
+  allCarsData!:ICar[];
 
-  errorMessage: string;
+  errorMessage!: string;
 
   constructor(private _http:HttpClient, private _afs:AngularFirestore) {
     this.carsDataCollection = _afs.collection<ICar>("cars_data");
@@ -33,12 +34,13 @@ export class CarApiService {
   }
 
   addCarData(car:ICar): void {
-    this.carsDataCollection.ADD(JSON.parse(JSON.stringify(car)));
+    this.carsDataCollection.add(JSON.parse(JSON.stringify(car)));
   }
 
   private handleError (err:HttpErrorResponse) {
     console.log('CarAPIService: ' + err.message);
-    return Observable.throw(err.message);
+    return throwError(err.message);
+    
   }
 
   

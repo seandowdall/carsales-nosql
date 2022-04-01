@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarApiService } from '../services/car-api.service';
 import { ICar, Car } from '../interfaces/car';
-import { ThisReceiver } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-carlist',
@@ -12,6 +12,8 @@ import { ThisReceiver } from '@angular/compiler';
 
 export class CarlistComponent implements OnInit {
   carsData!: ICar[];
+  show!:boolean;
+  
 
   constructor(private _carAPIService:CarApiService) { }
 
