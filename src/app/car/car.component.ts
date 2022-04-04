@@ -15,23 +15,20 @@ export class CarComponent implements OnInit {
   
   
 
-  constructor(private _carAPIService: CarApiService) { 
-  
-  
+  constructor(private _carAPIService: CarApiService) { }
+
+  deleteCar(carId:string) {
+
+    this._carAPIService.delCarData(carId);
+    this._carAPIService.carsDataCollection.doc(carId).delete();
     
+
   }
 
   ngOnInit(){
   }
 
-  deleteCar(carId:string) {
-
-    this._carAPIService.delCarData(carId);
-    this.carsDataCollection.doc(carId).delete();
-    
-    
-
-  }
+  
  
 
   

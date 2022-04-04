@@ -26,7 +26,7 @@ export class CarApiService {
   }
 
   getCarData():Observable<ICar[]> {
-    this.carsData = this.carsDataCollection.valueChanges( { idField:'id'} );
+    this.carsData = this.carsDataCollection.valueChanges({idField:'id'});
     this.carsData.subscribe(
       data => console.log("getCarsData:"+ JSON.stringify(data))
     )
