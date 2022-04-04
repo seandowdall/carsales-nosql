@@ -5,6 +5,7 @@ export interface ICar {
     model: string;
     year: string;
     imageURL: string;
+    
 }
 
 export class Car{
@@ -12,10 +13,11 @@ export class Car{
     model: string;
     year: string;
     imageURL: string;
+    
 
     constructor(make:string,model:string,year:string,imageURL:string){
         this.make = make;
-        this.model = year;
+        this.model = model;
         this.year = year;
         this.imageURL = imageURL;
     }
